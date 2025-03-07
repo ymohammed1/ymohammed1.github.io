@@ -1,0 +1,151 @@
+﻿<!--
+====================================================
+    Author: Prashant Desale
+    Date: 03/05/2025
+    File: index.html
+    Description:
+    This HTML file serves as the frontend for the GenAI  Demo. It allows users to select AI
+    tasks, input text, and view generated results.
+====================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Tasks Demo</title>
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <img src="logo.svg" alt="WEX Logo" class="logo">
+        <h1 class="app-title">GenAI Demo Application</h1>
+    </header>
+
+
+    <!-- Main container for the layout -->
+    <div class="container">
+
+        <!--
+            Task Selection Section:
+            - Displays different GentAI task options as radio buttons.
+            - Allows users to select a task before inputting text.
+        -->
+        <section class="task-section">
+            <h2 class="text-xl font-bold mb-4">Select Task</h2>
+            <div class="task-options">
+
+                <!-- Task Option: Sentiment Analysis -->
+                <label class="task-option">
+                    <input type="radio" name="task" value="sentiment" checked>
+                    <div class="option-content">
+                        <h3>Sentiment Analysis</h3>
+                        <p class="text-sm text-gray-600">Analyze the emotional tone of text</p>
+                    </div>
+                </label>
+
+                <!-- Task Option: Named Entity Recognition -->
+                <label class="task-option">
+                    <input type="radio" name="task" value="ner">
+                    <div class="option-content">
+                        <h3>Named Entity Recognition</h3>
+                        <p class="text-sm text-gray-600">Identify entities in text</p>
+                    </div>
+                </label>
+
+                <!-- Task Option: Question Answering -->
+                <label class="task-option">
+                    <input type="radio" name="task" value="qa">
+                    <div class="option-content">
+                        <h3>Question Answering</h3>
+                        <p class="text-sm text-gray-600">Get answers from context</p>
+                    </div>
+                </label>
+
+                <!-- Task Option: Summarization -->
+                <label class="task-option">
+                    <input type="radio" name="task" value="summary">
+                    <div class="option-content">
+                        <h3>Summarization</h3>
+                        <p class="text-sm text-gray-600">Create concise summaries</p>
+                    </div>
+                </label>
+
+                <!-- Task Option: Translation -->
+                <label class="task-option">
+                    <input type="radio" name="task" value="translate">
+                    <div class="option-content">
+                        <h3>Translation</h3>
+                        <p class="text-sm text-gray-600">Translate text between languages</p>
+                    </div>
+                </label>
+
+                <!-- Task Option: Text Generation -->
+                <label class="task-option">
+                    <input type="radio" name="task" value="generate">
+                    <div class="option-content">
+                        <h3>Text Generation</h3>
+                        <p class="text-sm text-gray-600">Generate creative text</p>
+                    </div>
+                </label>
+
+            </div>
+        </section>
+
+        <!--
+            Workspace:
+            - Contains the input area, task info, and results.
+        -->
+        <div class="workspace">
+
+            <!--
+                Input Area:
+                - Users enter text that will be processed by the selected AI task & a button to run the task.
+            -->
+            <section class="input-area">
+                <h2 class="text-xl font-bold mb-4">Input</h2>
+                <textarea id="userInput" placeholder="Enter your text here..."></textarea>
+                <button id="runTask" class="run-button mt-4">Run Task</button>
+            </section>
+
+            <!--
+                Task Information Section:
+                - Displays details about the selected task.
+                - Shows relevant example code or explanations.
+            -->
+            <section class="info-section">
+                <h2 class="text-xl font-bold mb-4">Task Information</h2>
+                <div id="taskDescription" class="mb-4"></div>
+                <div class="code-preview" id="codePreview"></div>
+            </section>
+
+            <!--
+                Task Result Section:
+                - Shows the status of the task (e.g., processing, completed).
+                - Displays output generated by the selected AI task.
+            -->
+            <section class="result-section">
+
+                <!-- Status Indicator -->
+                <div class="status">
+                    <div class="status-dot"></div>
+                    <div id="taskStatus">Status: Ready</div>
+                </div>
+
+                <!-- Task output container -->
+                <div id="taskResult" class="task-result"></div>
+            </section>
+
+        </div>
+    </div>
+
+    <!--
+        JavaScript File Reference that executes GenAI tasks:
+        - Handles task execution and interaction logic.
+    -->
+    <script type="module" src="genai.js"></script>
+</body>
+</html>
