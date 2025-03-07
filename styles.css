@@ -1,0 +1,281 @@
+﻿/*  
+====================================================
+    Author: Prashant Desale
+    Date: 03/05/2025
+    File: styles.css
+    Description: 
+    This CSS file defines the styles for a task selection interface. It includes variables for color themes, 
+    layout configurations, interactive elements, and responsive design adjustments.
+====================================================
+*/
+
+/* 
+   Root Variables:
+   - Defines primary color themes, typography, spacing, and shadow effects used throughout the application.
+*/
+:root {
+    --primary-color: #dc2626;
+    --secondary-color: #ef4444;
+    --hover-color: #fee2e2;
+    --bg-color: #fafafa;
+    --text-color: #1e293b;
+    --border-radius: 12px;
+    --shadow: 0 4px 6px -1px rgb(220 38 38 / 0.1);
+}
+
+/* 
+   Global Reset:
+   - Margin and padding for consistency.
+   - Common font.
+   - box-sizing is set to border-box for layout control.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* 
+   Body Styling:
+   - Background and text color.
+   - Padding for content spacing.
+*/
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    padding: 2rem;
+}
+
+/* 
+   Layout:
+   - Responsive grid-based layout.
+*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    align-items: center; /* Align logo and text vertically */
+    justify-content: right; /* Center content horizontally */
+    gap: 25px; /* Space between logo and text */
+    padding: 0px;
+    background-color: var(--bg-color); /* Use background variable */
+    text-align: center;
+}
+
+/* Logo Styling */
+.logo {
+    max-width: 80px; /* Adjust logo size */
+    height: auto;
+}
+
+/* Application Title Styling */
+.app-title {
+    font-size: 2rem; /* Large font size */
+    font-weight: bold;
+    color: #CF1F39; /* Use WEX Red Color*/
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+/* 
+   Task Section:
+   - Styles the task selection area with background, padding, shadows, and rounded corners.
+*/
+.task-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+/* 
+   Task Options:
+   - Configure options in a flexible column layout.
+*/
+.task-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* 
+   Task Option Styling:
+   - Set up border, padding, and transition effects for hover interactions.
+   - Gradient overlay effect.
+*/
+.task-option {
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+    .task-option::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, var(--secondary-color) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .task-option:hover::before {
+        opacity: 0.1;
+    }
+
+    /* 
+   Task Option Selection:
+   - Styles checked radio options with different colors and effects.
+*/
+    .task-option input[type="radio"] {
+        display: none;
+    }
+
+        .task-option input[type="radio"]:checked + .option-content {
+            color: var(--primary-color);
+        }
+
+            .task-option input[type="radio"]:checked + .option-content h3 {
+                color: var(--primary-color);
+            }
+
+            .task-option input[type="radio"]:checked + .option-content p {
+                color: var(--secondary-color);
+            }
+
+            .task-option input[type="radio"]:checked + .option-content::before {
+                opacity: 0.1;
+            }
+
+/* 
+   Text Area:
+   - Configure a resizable, styled input area for user input.
+   - Also apply transitions for focus effects.
+*/
+textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+    textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    }
+
+/* 
+   Buttons:
+   - Primary action button with hover effects.
+*/
+.run-button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .run-button:hover {
+        background: var(--secondary-color);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+    }
+
+/* 
+   Code Preview:
+   - Code display section with monospaced font and dark background.
+*/
+.code-preview {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-family: 'Fira Code', monospace;
+    overflow-x: auto;
+}
+
+/* 
+   Status Indicator:
+   - Create a small dot indicator for loading or status updates.
+*/
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
+
+    /* 
+   Loading Animation:
+   - Implement a pulsing animation effect.
+*/
+    .status-dot.loading {
+        background: #eab308;
+        animation: pulse 1.5s infinite;
+    }
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 
+   Responsive Adjustments:
+   - Adapt the layout for smaller screens.
+*/
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 
+   Headings:
+   - Style section headings with primary color emphasis.
+*/
+h2 {
+    color: var(--primary-color);
+    font-weight: 600;
+}
